@@ -41,16 +41,12 @@ namespace GildedRoseKata.Controllers
         [HttpPost]
         public IActionResult PostItem([FromBody] Item item, ItemTypes type)
         {
-            var actualItem = ItemFactory.CreateItemByType(type);
-            actualItem.Name = item.Name;
-            actualItem.SellIn = item.SellIn;
-            actualItem.Quality = item.Quality;
-            _service.Add(actualItem);
+            var actualItem =_service.Add(item, type);
             return CreatedAtAction(nameof(GetItem), new { id = actualItem.Id }, item);
         }
 
         [HttpPost]
-        [Route("[controller]/UpdateItems")]
+        [Route("Update")]
         public IActionResult UpdateItems()
         {
             _service.UpdateQuality();

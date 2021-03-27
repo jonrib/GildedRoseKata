@@ -14,5 +14,9 @@ namespace GildedRoseKata.Model.Context
         }
 
         public DbSet<RegularItem> RegularItems { get; set; }
+        public DbSet<ConjuredItem> ConjuredItems { get; set; }
+        public DbSet<LegendaryItem> LegendaryItems { get; set; }
+        public DbSet<AgedItem> AgedItems { get; set; }
+        public DbSet<BackstagePassItem> BackstagePassItems { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GildedRoseKata.Model;
+﻿using GildedRoseKata.Factories;
+using GildedRoseKata.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace GildedRoseKata.Services
     {
         void UpdateQuality();
         Item Find(int id);
-        void Add(RegularItem item);
+        RegularItem Add(Item item, ItemTypes type);
         IList<Item> GetAll();
     }
 }

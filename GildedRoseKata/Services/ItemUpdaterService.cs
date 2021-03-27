@@ -18,9 +18,9 @@ namespace GildedRoseKata.Services
         {
             this._context = context;
             Items = new List<Item>();
-            foreach (RegularItem item in context.RegularItems.ToList())
+            foreach (var item in context.RegularItems.ToList())
             {
-                Items.Add(item as Item);
+                Items.Add(item);
             }
         }
 
@@ -29,11 +29,16 @@ namespace GildedRoseKata.Services
             this.Items = Items;
         }
 
-        public async void Add(RegularItem item)
+        public RegularItem Add(Item item, ItemTypes type)
         {
             //Did not implement any validation as it was not really a part of the task
-            _context.RegularItems.Add(item);
-            await _context.SaveChangesAsync();
+            var actualItem = ItemFactory.CreateItemByType(type);
+            actualItem.Name = item.Name;
+            actualItem.SellIn = item.SellIn;
+            actualItem.Quality = item.Quality;
+            _context.RegularItems.Add(actualItem);
+            _context.SaveChanges();
+            return actualItem;
         }
 
         public Item Find(int id)
